@@ -1,9 +1,13 @@
-const file = require('./index.js');
-console.log(file);
-// console.log("Hello World!");
-// console.log(5+3);
-// console.log(5-3);
-// console.log(5*3);
-// console.log(5/3);
-// console.log(5%3);
-// console.log(5**3);
+const express = require('express');
+const person = require('./index.js');
+
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.json(person);
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
