@@ -1,0 +1,11 @@
+{
+  "name": "learn-nodejs",
+  "version": "1.0.0",
+  "description": "Node.js practice workspace",
+  "main": "nodejs simple practice/simple-code.js",
+  "scripts": {
+    "start": "node \"./nodejs simple practice/simple-code.js\""
+  },
+  "author": "Radhika",
+  "license": "ISC"
+}
