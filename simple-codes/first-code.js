@@ -1,7 +1,7 @@
-module.require('./index');
-console.log("Hello ", person);
-console.log(person.name);
-console.log(person.age);
-console.log(person.city);
-console.log(person.hobbies);
-console.log(person.developer);
+const human = module.require('./index');
+console.log("Hello ", human);
+console.log(human.name);
+console.log(human.age);
+console.log(human.city);
+console.log(human.hobbies[2]);
+console.log(human.developer);
