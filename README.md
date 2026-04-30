@@ -9,6 +9,7 @@ Run `npm install` to install dependencies.
 ## Running the Server
 
 Run `npm start` to start the server on http://localhost:3000
+can use custom server.
 
 The server serves a JSON object with person data at the root endpoint.
 
