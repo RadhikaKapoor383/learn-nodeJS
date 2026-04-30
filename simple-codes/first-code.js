@@ -1,18 +1,22 @@
-import fs from 'fs';
-// const human = module.require('./index');
-// console.log("Hello ", human);
-// console.log(human.name);
-// console.log(human.age);
-// console.log(human.city);
-// console.log(human.hobbies[2]);
-// console.log(human.developer);
-// const fs = module.require('fs');
-const data = fs.readFileSync('./file.txt', 'utf-8');
-console.log(data);
-console.log("File read successfully");
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const dataP = fs.readFile('file.txt', (err, data) => {
-  console.log(data);  // runs when ready
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const filePath = path.join(__dirname, 'file.txt');
+
+const data = fs.readFileSync(filePath, 'utf-8');
+console.log(data);
+console.log('File read successfully');
+
+fs.readFile(filePath, 'utf-8', (err, asyncData) => {
+  if (err) {
+    console.error('Read failed:', err);
+    return;
+  }
+  console.log(asyncData);
+  console.log('File read asynchronously successfully');
 });
-console.log(dataP);  // runs first, before the file is read
-console.log("This runs first!");
+
+console.log('This runs first!');
