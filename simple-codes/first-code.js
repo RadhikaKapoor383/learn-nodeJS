@@ -7,9 +7,9 @@ import fs from 'fs';
 // console.log(human.hobbies[2]);
 // console.log(human.developer);
 // const fs = module.require('fs');
-// const data = fs.readFileSync('./file.txt', 'utf-8');
-// console.log(data);
-// console.log("File read successfully");
+const data = fs.readFileSync('./file.txt', 'utf-8');
+console.log(data);
+console.log("File read successfully");
 
 const dataP = fs.readFile('file.txt', (err, data) => {
   console.log(data);  // runs when ready
