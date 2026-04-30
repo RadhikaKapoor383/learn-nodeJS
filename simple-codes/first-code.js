@@ -11,7 +11,8 @@ import fs from 'fs';
 // console.log(data);
 // console.log("File read successfully");
 
-fs.readFile('file.txt', (err, data) => {
+const dataP = fs.readFile('file.txt', (err, data) => {
   console.log(data);  // runs when ready
 });
+console.log(dataP);  // runs first, before the file is read
 console.log("This runs first!");
