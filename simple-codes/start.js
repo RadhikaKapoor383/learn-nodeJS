@@ -1,4 +1,4 @@
-import fs from 'fs';
+const fs = module.require('fs');
 
 // This registers a callback and moves on IMMEDIATELY
 fs.readFile('bigfile.txt', 'utf8', function(err, data) {

@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "scripts": {
     "hello": "node ./first-code.js",
     "show-index": "node ./use-index.js",
