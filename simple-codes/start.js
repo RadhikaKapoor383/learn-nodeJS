@@ -1,5 +1,13 @@
+//This is synchronous code. It runs in order, and each line waits for the previous one to finish before it runs.
 const fs = module.require('fs');
 
+// This STOPS everything until the file is fully read
+const data = fs.readFileSync('bigfile.txt', 'utf8');
+console.log(data);
+console.log('This runs AFTER file is done');
+
+
+//This is called a callback function, and it's a common pattern in Node.js
 // This registers a callback and moves on IMMEDIATELY
 fs.readFile('bigfile.txt', 'utf8', function(err, data) {
     // This runs later, when the file is ready
