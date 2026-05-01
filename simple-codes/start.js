@@ -16,3 +16,16 @@ fs.readFile('bigfile.txt', 'utf8', function(err, data) {
 });
 
 console.log('This runs FIRST, before file is even done!');
+
+//Modern async await syntax
+async function readFileAsync() {
+    try {
+        const data = await fs.promises.readFile('bigfile.txt', 'utf8');
+        console.log(data);
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+readFileAsync();
+console.log('This runs immediately, before async function finishes!');
