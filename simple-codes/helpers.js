@@ -1,4 +1,4 @@
-module.exports = {
+helper = {
     name : "Elie",
     age : 30,
     sayHello : function() {
@@ -7,3 +7,4 @@ module.exports = {
         console.log("And I am a helper function");
     }
 }
+exports = module.exports = helper;

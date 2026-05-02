@@ -1,4 +1,4 @@
-const helpers = require('./helpers');
+const helpers = module.require('./helpers');
 
 console.log(helpers.name);
 helpers.sayHello();
