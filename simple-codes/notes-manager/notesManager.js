@@ -12,7 +12,7 @@ async function getNotes() {
     }
 }
 
-async function addNotes(title, content) {
+async function addNote(title, content) {
     const notes = await getNotes()
     const note = {
         id: Date.now(),

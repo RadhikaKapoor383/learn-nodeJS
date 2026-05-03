@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": 1777829693407,
+    "title": "Day 1",
+    "content": "Learned about Node architecture",
+    "created": "2026-05-03T17:34:53.407Z"
+  },
+  {
+    "id": 1777829693517,
+    "title": "Day 3",
+    "content": "File system with fs module",
+    "created": "2026-05-03T17:34:53.517Z"
+  }
+]
