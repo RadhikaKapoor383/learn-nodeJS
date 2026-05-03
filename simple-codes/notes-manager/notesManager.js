@@ -25,9 +25,9 @@ async function addNotes(title, content) {
     return note
 }
 async function deleteNote(id) {
-  const notes   = await getNotes()
-  const updated = notes.filter(n => n.id !== id)
-  await fs.writeFile(FILE, JSON.stringify(updated, null, 2))
+    const notes   = await getNotes()
+    const updated = notes.filter(n => n.id !== id)
+    await fs.writeFile(FILE, JSON.stringify(updated, null, 2))
 }
 
 module.exports = { getNotes, addNote, deleteNote }
