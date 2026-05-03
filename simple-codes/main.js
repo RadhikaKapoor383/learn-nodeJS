@@ -2,7 +2,11 @@
 
 // console.log(helpers.name);
 // helpers.sayHello();
-const { myPets } = module.require('./myPets');
-const { cat, dog } = myPets;
+// const { myPets } = module.require('./myPets');
+// const { cat, dog } = myPets;
 
-console.log(`My cat's name is ${cat} and my dog's name is ${dog}`);
+// console.log(`My cat's name is ${cat} and my dog's name is ${dog}`);
+
+const { prompt } = module.require('./prompt');
+
+prompt.start();
