@@ -1,5 +1,4 @@
-// const http = require('http')
-import http from 'http';
+const http = require('http')
 
 const server = http.createServer(function(req, res) {
 
@@ -27,6 +26,6 @@ const server = http.createServer(function(req, res) {
         res.end('<h1>404 — Page not found</h1>')
     }
 })
-server.listen (3000,
+server.listen(3000,
     () => console.log('Server at http://localhost:3000')
 )
