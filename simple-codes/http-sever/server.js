@@ -10,9 +10,9 @@
 //     console.log('Server running at http://localhost:3003')
 // })
 
-const http = require('http')
-const fs   = require('fs').promises
-const path = require('path')
+const http = module.require('http')
+const fs   = module.require('fs').promises
+const path = module.require('path')
 
 const server = http.createServer(async function(req, res) {
 
