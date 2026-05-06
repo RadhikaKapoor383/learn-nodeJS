@@ -2,7 +2,7 @@
 
 A comprehensive learning repository covering Node.js fundamentals, Express.js, and practical project implementations. This repo contains practice exercises, mini-projects, and learning lessons to master Node.js development.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 learn-nodeJS/
@@ -31,7 +31,7 @@ learn-nodeJS/
 └── README.md                 # This file
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Installation
 
@@ -46,7 +46,7 @@ learn-nodeJS/
    npm install
    ```
 
-## 📚 Learning Modules
+## Learning Modules
 
 ### 1. Simple Codes
 Basic Node.js fundamentals and utilities:
@@ -77,7 +77,7 @@ Solutions to the popular learnyounode npm tutorial covering:
 - Module creation
 - Core modules usage
 
-## 📝 Available Scripts
+## Available Scripts
 
 From `simple-codes/` directory:
 
@@ -87,7 +87,7 @@ npm run show-index    # Run use-index.js - Module demonstration
 npm run start:express # Start Express server on port 3000
 ```
 
-## 🔧 Key Topics Covered
+## Key Topics Covered
 
 - **Core Modules**: fs, path, http, util
 - **npm & Packages**: Managing dependencies, package.json
@@ -99,7 +99,7 @@ npm run start:express # Start Express server on port 3000
 - **JSON Data**: Storing and retrieving data
 - **Module System**: Creating and importing modules
 
-## 📖 How to Use
+## How to Use
 
 1. **Start with basic concepts**: Begin in `simple-codes/` folder
    - Run `npm run hello` to see Node.js basics
@@ -114,13 +114,13 @@ npm run start:express # Start Express server on port 3000
 4. **Reference tutorials**: Check `learnyounode-lessons/`
    - Contains solutions to official Node.js tutorial exercises
 
-## 🛠️ Dependencies
+## Dependencies
 
 - **express** - Web application framework for Node.js
 - **prompt** - Interactive command-line prompts
 - **nodemon** - Development tool for auto-restarting on file changes
 
-## 📌 Tips & Best Practices
+## Tips & Best Practices
 
 - Use `nodemon` during development for automatic restart: `nodemon filename.js`
 - Keep modules small and focused on single responsibility
@@ -128,7 +128,7 @@ npm run start:express # Start Express server on port 3000
 - Always handle errors in file operations
 - Use environment variables for configuration
 
-## 🎯 Next Steps
+## Next Steps
 
 - Explore `Express/` folder for more advanced server implementations
 - Create projects in `mini-project/` folder using learned concepts
@@ -136,6 +136,6 @@ npm run start:express # Start Express server on port 3000
 - Learn about authentication and authorization
 - Deploy Node.js applications to cloud platforms
 
-## 📄 License
+## License
 
 Educational repository for learning purposes.
