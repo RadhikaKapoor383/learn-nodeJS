@@ -83,8 +83,8 @@ From `simple-codes/` directory:
 
 ```bash
 npm run hello          # Run first-code.js - Basic introduction
-npm run show-index    # Run use-index.js - Module demonstration
-npm run start:express # Start Express server on port 3000
+npm run show-index     # Run use-index.js - Module demonstration
+npm run start:express  # Start Express server on port 3000
 ```
 
 ## Key Topics Covered
