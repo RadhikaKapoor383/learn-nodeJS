@@ -15,4 +15,4 @@ The server serves a JSON object with person data at the root endpoint.
 
 ## API
 
-- GET / : Returns person data in JSON format
+- GET / : Returns person data in JSON format.
