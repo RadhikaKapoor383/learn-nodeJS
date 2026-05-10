@@ -10,5 +10,13 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
-  }
+  },
+  "name": "simple-codes",
+  "version": "1.0.0",
+  "description": "This folder contains small Node.js examples. The goal is to learn by doing.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
 }
