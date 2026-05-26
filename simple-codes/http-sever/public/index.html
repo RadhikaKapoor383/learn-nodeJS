@@ -1,19 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Server</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express File Server</title>
     <style>
-        body { font-family: sans-serif; max-width: 600px; margin: 80px auto; }
-        h1   { color: #630735; }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 720px;
+            margin: 60px auto;
+            padding: 0 20px;
+            line-height: 1.5;
+        }
+
+        h1 {
+            color: #630735;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            margin: 12px 0;
+            padding: 10px;
+            font: inherit;
+        }
+
+        button {
+            margin: 4px 6px 4px 0;
+            padding: 10px 14px;
+            cursor: pointer;
+        }
+
+        pre {
+            background: #f2f2f2;
+            padding: 14px;
+            white-space: pre-wrap;
+            min-height: 80px;
+        }
     </style>
 </head>
 <body>
+    <h1>Express File Server</h1>
+    <p>This page is served from the <code>public</code> folder.</p>
 
-    <h1>Hello from a real HTML file!</h1>
-    <p>This file is being served by Node.js</p>
-    <p>Try changing the content of this file and refreshing the page to see the changes.</p>
-    <p>Also, try changing the name of this file and refreshing the page to see what happens.</p>
-    <p>Hint: If you change the name of this file, you will also need to change the name in the server code.</p>
-    <p>Hint: The server code is in the file named <code>server.js</code>.</p>
+    <textarea id="content" placeholder="Write text here..."></textarea>
+
+    <div>
+        <button onclick="readFile()">Read</button>
+        <button onclick="writeFile()">Write</button>
+        <button onclick="appendFile()">Append</button>
+        <button onclick="deleteFile()">Delete</button>
+    </div>
+
+    <h2>Response</h2>
+    <pre id="output">Click a button to test the Express routes.</pre>
+
+    <script>
+        const contentBox = document.getElementById('content')
+        const outputBox = document.getElementById('output')
+
+        function showResult(result) {
+            outputBox.textContent = JSON.stringify(result, null, 2)
+        }
+
+        async function readFile() {
+            const response = await fetch('/read')
+            const result = await response.json()
+            showResult(result)
+        }
+
+        async function writeFile() {
+            const response = await fetch('/write', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: contentBox.value })
+            })
+            const result = await response.json()
+            showResult(result)
+        }
+
+        async function appendFile() {
+            const response = await fetch('/append', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: contentBox.value })
+            })
+            const result = await response.json()
+            showResult(result)
+        }
+
+        async function deleteFile() {
+            const response = await fetch('/delete', { method: 'DELETE' })
+            const result = await response.json()
+            showResult(result)
+        }
+    </script>
 </body>
 </html>
