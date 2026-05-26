@@ -98,15 +98,10 @@ app.get('/logs/update', async function(req, res) {
 // DELETE request
 app.delete('/delete', async function(req, res) {
     try {
-        await fs.unlink(filePath)
-        res.json({ message: 'File deleted successfully' })
+        await fs.writeFile(filePath, '')
+        res.json({ message: 'File content deleted successfully' })
     } catch (err) {
-        if (err.code === 'ENOENT') {
-            res.status(404).json({ message: 'File does not exist' })
-            return
-        }
-
-        res.status(500).json({ message: 'Error deleting file' })
+        res.status(500).json({ message: 'Error deleting file content' })
     }
 })
 
