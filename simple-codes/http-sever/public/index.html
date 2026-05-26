@@ -92,7 +92,11 @@
         }
 
         async function deleteFile() {
-            const response = await fetch('/delete', { method: 'DELETE' })
+            const response = await fetch('/delete', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: contentBox.value })
+            })
             const result = await response.json()
             showResult(result)
         }

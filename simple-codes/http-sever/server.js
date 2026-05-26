@@ -98,10 +98,30 @@ app.get('/logs/update', async function(req, res) {
 // DELETE request
 app.delete('/delete', async function(req, res) {
     try {
-        await fs.writeFile(filePath, '')
-        res.json({ message: 'File content deleted successfully' })
+        const content = req.body.content || ''
+
+        if (!content) {
+            res.status(400).json({ message: 'Please enter text to delete' })
+            return
+        }
+
+        const data = await fs.readFile(filePath, 'utf8')
+        const updatedData = data.replace(content, '')
+
+        if (data === updatedData) {
+            res.status(404).json({ message: 'Text not found in file' })
+            return
+        }
+
+        await fs.writeFile(filePath, updatedData)
+        res.json({ message: 'Selected text deleted successfully', data: updatedData })
     } catch (err) {
-        res.status(500).json({ message: 'Error deleting file content' })
+        if (err.code === 'ENOENT') {
+            res.status(404).json({ message: 'File does not exist yet' })
+            return
+        }
+
+        res.status(500).json({ message: 'Error deleting selected text' })
     }
 })
 
