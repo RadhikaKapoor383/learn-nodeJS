@@ -19,6 +19,10 @@ async function addLog(action, content) {
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(function(req, res, next) {
+    res.set('Cache-Control', 'no-store')
+    next()
+})
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Home route: runs public/index.html
@@ -98,7 +102,7 @@ app.get('/logs/update', async function(req, res) {
 // DELETE request
 app.delete('/delete', async function(req, res) {
     try {
-        const content = req.body.content || ''
+        const content = req.body?.content || ''
 
         if (!content) {
             res.status(400).json({ message: 'Please enter text to delete' })
@@ -106,7 +110,7 @@ app.delete('/delete', async function(req, res) {
         }
 
         const data = await fs.readFile(filePath, 'utf8')
-        const updatedData = data.replace(content, '')
+        const updatedData = data.split(content).join('')
 
         if (data === updatedData) {
             res.status(404).json({ message: 'Text not found in file' })
