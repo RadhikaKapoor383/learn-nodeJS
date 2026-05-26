@@ -47,9 +47,11 @@
 
     <div>
         <button onclick="readFile()">Read</button>
-        <button onclick="writeFile()">Write</button>
-        <button onclick="appendFile()">Append</button>
+        <button onclick="writeFile()">Update</button>
+        <button onclick="appendFile()">Add</button>
         <button onclick="deleteFile()">Delete</button>
+        <button onclick="readAddLog()">Add Log</button>
+        <button onclick="readUpdateLog()">Update Log</button>
     </div>
 
     <h2>Response</h2>
@@ -91,6 +93,18 @@
 
         async function deleteFile() {
             const response = await fetch('/delete', { method: 'DELETE' })
+            const result = await response.json()
+            showResult(result)
+        }
+
+        async function readAddLog() {
+            const response = await fetch('/logs/add')
+            const result = await response.json()
+            showResult(result)
+        }
+
+        async function readUpdateLog() {
+            const response = await fetch('/logs/update')
             const result = await response.json()
             showResult(result)
         }

@@ -5,6 +5,17 @@ const path = require('path')
 const app = express()
 const PORT = 3000
 const filePath = path.join(__dirname, 'data.txt')
+const addLogPath = path.join(__dirname, 'add-log.txt')
+const updateLogPath = path.join(__dirname, 'update-log.txt')
+
+function getLogLine(action, content) {
+    return `${new Date().toLocaleString()} | ${action} | ${content.length} characters\n`
+}
+
+async function addLog(action, content) {
+    const logPath = action === 'ADD' ? addLogPath : updateLogPath
+    await fs.appendFile(logPath, getLogLine(action, content))
+}
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -35,6 +46,7 @@ app.post('/write', async function(req, res) {
     try {
         const content = req.body.content || ''
         await fs.writeFile(filePath, content)
+        await addLog('UPDATE', content)
         res.json({ message: 'File written successfully' })
     } catch (err) {
         res.status(500).json({ message: 'Error writing file' })
@@ -46,9 +58,40 @@ app.post('/append', async function(req, res) {
     try {
         const content = req.body.content || ''
         await fs.appendFile(filePath, content)
+        await addLog('ADD', content)
         res.json({ message: 'Content appended successfully' })
     } catch (err) {
         res.status(500).json({ message: 'Error appending file' })
+    }
+})
+
+// ADD log request
+app.get('/logs/add', async function(req, res) {
+    try {
+        const data = await fs.readFile(addLogPath, 'utf8')
+        res.json({ message: 'Add log read successfully', data })
+    } catch (err) {
+        if (err.code === 'ENOENT') {
+            res.json({ message: 'No add log yet', data: '' })
+            return
+        }
+
+        res.status(500).json({ message: 'Error reading add log' })
+    }
+})
+
+// UPDATE log request
+app.get('/logs/update', async function(req, res) {
+    try {
+        const data = await fs.readFile(updateLogPath, 'utf8')
+        res.json({ message: 'Update log read successfully', data })
+    } catch (err) {
+        if (err.code === 'ENOENT') {
+            res.json({ message: 'No update log yet', data: '' })
+            return
+        }
+
+        res.status(500).json({ message: 'Error reading update log' })
     }
 })
 
@@ -70,4 +113,3 @@ app.delete('/delete', async function(req, res) {
 app.listen(PORT, function() {
     console.log(`Express server running at http://localhost:${PORT}`)
 })
-// Server at http://localhost:3000'))Server at http://localhost:3000'))
