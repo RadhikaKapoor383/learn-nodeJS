@@ -1,35 +1,73 @@
-// const http = require('http')
+const express = require('express')
+const fs = require('fs').promises
+const path = require('path')
 
-// const server = http.createServer(function(req, res) {
-//     console.log('Request received:', req.method, req.url)
-//     res.writeHead(200, { 'Content-Type': 'text/html' })
-//     res.end('<div><h1>Hello Peeps!</h2><h3>How are you??</h3></div>')
-// })
+const app = express()
+const PORT = 3000
+const filePath = path.join(__dirname, 'data.txt')
 
-// server.listen(3003, function() {
-//     console.log('Server running at http://localhost:3003')
-// })
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static(path.join(__dirname, 'public')))
 
-const http = module.require('http')
-const fs   = module.require('fs').promises
-const path = module.require('path')
+// Home route: runs public/index.html
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
-const server = http.createServer(async function(req, res) {
-
-    if (req.url === '/' && req.method === 'GET') {
-        try {
-            const filePath = path.join(__dirname, 'public', 'index.html')
-            const html     = await fs.readFile(filePath, 'utf8')
-            res.writeHead(200, { 'Content-Type': 'text/html' })
-            res.end(html)
-        } catch (err) {
-            res.writeHead(500, { 'Content-Type': 'text/plain' })
-            res.end('Server error: could not read file')
+// READ request
+app.get('/read', async function(req, res) {
+    try {
+        const data = await fs.readFile(filePath, 'utf8')
+        res.json({ message: 'File read successfully', data })
+    } catch (err) {
+        if (err.code === 'ENOENT') {
+            res.status(404).json({ message: 'File does not exist yet' })
+            return
         }
-    } else {
-        res.writeHead(404, { 'Content-Type': 'text/plain' })
-        res.end('Not found')
+
+        res.status(500).json({ message: 'Error reading file' })
     }
 })
 
-server.listen(3000, () => console.log('Server at http://localhost:3000'))
+// WRITE request: creates/replaces file content
+app.post('/write', async function(req, res) {
+    try {
+        const content = req.body.content || ''
+        await fs.writeFile(filePath, content)
+        res.json({ message: 'File written successfully' })
+    } catch (err) {
+        res.status(500).json({ message: 'Error writing file' })
+    }
+})
+
+// APPEND request: adds content at the end of file
+app.post('/append', async function(req, res) {
+    try {
+        const content = req.body.content || ''
+        await fs.appendFile(filePath, content)
+        res.json({ message: 'Content appended successfully' })
+    } catch (err) {
+        res.status(500).json({ message: 'Error appending file' })
+    }
+})
+
+// DELETE request
+app.delete('/delete', async function(req, res) {
+    try {
+        await fs.unlink(filePath)
+        res.json({ message: 'File deleted successfully' })
+    } catch (err) {
+        if (err.code === 'ENOENT') {
+            res.status(404).json({ message: 'File does not exist' })
+            return
+        }
+
+        res.status(500).json({ message: 'Error deleting file' })
+    }
+})
+
+app.listen(PORT, function() {
+    console.log(`Express server running at http://localhost:${PORT}`)
+})
+// Server at http://localhost:3000'))Server at http://localhost:3000'))
