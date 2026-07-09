@@ -1,0 +1,4 @@
+Heyy World! from async
+This is a new line added to the file using appendFileSync method.
+This is a new line added to the file using appendFileSync method.
+This is a new line added to the file using appendFileSync method.
