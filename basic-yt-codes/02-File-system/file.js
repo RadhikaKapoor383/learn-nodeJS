@@ -43,4 +43,4 @@ console.log('Data appended successfully using appendFileSync method!');
 
 fs.copyFileSync('./contacts.txt', './contacts_copy.txt');
 fs.unlinkSync('./contacts_copy.txt');
-console.log(fs.statSync("./text.txt"));
+console.log(fs.statSync("./text.txt").atime);
