@@ -40,3 +40,7 @@ fs.appendFile('./contacts.txt', '\nNeha kapoor +922200000', (err) => {
 });
 fs.appendFileSync('./text.txt', '\nThis is a new line added to the file using appendFileSync method.');
 console.log('Data appended successfully using appendFileSync method!');
+
+fs.copyFileSync('./contacts.txt', './contacts_copy.txt');
+fs.unlinkSync('./contacts_copy.txt');
+console.log(fs.statSync("./text.txt"));
