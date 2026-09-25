@@ -1,6 +1,6 @@
 # Learn Node.js
 A comprehensive learning repository covering Node.js fundamentals, Express.js, and practical project implementations. This repository contains practice exercises, mini-projects, and learning lessons to help you master Node.js development.
-## Project Structure
+## Project Structure.
 ```
 learn-nodeJS/
 ├── simple-codes/              # Basic Node.js exercises and implementations
